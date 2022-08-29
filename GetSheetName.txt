@@ -1,0 +1,11 @@
+Sub GetSheetNameBtn_Click()
+'変数宣言
+Dim sheetName As String
+
+'シート名設定
+sheetName = "シート名:" & Sheets(1).Name
+
+'シート名を文字列に設定
+MsgBox sheetName
+
+End Sub
