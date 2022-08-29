@@ -1,0 +1,17 @@
+Sub OutPutBtn_Click()
+'ファイルを書き込みで開く(無ければ新規作成される、あれば上書き)
+Open ".\test.txt" For Output As #1
+ 
+'開いたファイルに書き込む
+Print #1, "aaa"
+Print #1, "bbb"
+Print #1, "ccc"
+Print #1, "ddd"
+Print #1, "eee"
+ 
+'開いたファイルを閉じる
+Close #1
+ 
+'終わったのが分かるようにメッセージを出す
+MsgBox "完了！"
+End Sub
