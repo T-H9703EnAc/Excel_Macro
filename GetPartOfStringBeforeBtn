@@ -1,0 +1,13 @@
+Sub GetPartOfStringBeforeBtn_Click()
+
+Dim txt As String
+
+txt = Range("G5").Value
+
+'特定の行以降取得
+MsgBox Left(txt, 4)
+
+'特定の文字以前取得
+MsgBox Left(txt, InStr(txt, ":") - 1)
+
+End Sub
