@@ -1,0 +1,116 @@
+Sub SetterMaker_Click()
+    ' 変数名
+    Dim hensuu As String
+    
+    ' Setterシートの変数名の値を取得
+    hensuu = Worksheets("setter").Range("B1").Value
+    
+    Dim ronriName As String
+    
+    Dim butsuriName As String
+    
+    Dim maxCount As Integer
+    
+    maxCount = Worksheets("setter").Cells(1, 1).End(xlDown).Row
+    
+    Dim arrays() As String
+    
+    ReDim arrays(maxCount, maxCount)
+    
+    Dim index As Integer
+    index = 0
+    
+    Dim filaName As String
+    filName = Range("B1").Value & "\setter.txt"
+    
+    '3行目から最後の行まで
+    For i = 3 To maxCount
+        ronriName = "/** " & Worksheets("setter").Cells(i, 1).Value & " */"
+        
+        '一文字目大文字に変換して2文字以降そのままつける。
+        butsuriName = hensuu & ".set" & UCase(Left(Worksheets("setter").Cells(i, 2).Value, 1)) & Mid(Worksheets("setter").Cells(i, 2).Value, 2) & "()"
+        
+        arrays(index, 0) = ronriName
+        arrays(index, 1) = butsuriName
+        
+        index = index + 1
+    Next
+    
+    
+    'ファイルを書き込みで開く(無ければ新規作成される、あれば上書き)
+    Open filName For Output As #1
+    
+    For i = 0 To index
+        '開いたファイルに書き込む
+        Print #1, CStr(arrays(i, 0))
+        Print #1, CStr(arrays(i, 1))
+        Debug.Print (arrays(i, 0))
+        Debug.Print (arrays(i, 1))
+
+    Next
+ 
+    '開いたファイルを閉じる
+    Close #1
+ 
+    '終わったのが分かるようにメッセージを出す
+    MsgBox "完了！"
+
+End Sub
+
+Sub GetterMaker_Click()
+    ' 変数名
+    Dim hensuu As String
+    
+    ' Setterシートの変数名の値を取得
+    hensuu = Worksheets("getter").Range("B1").Value
+    
+    Dim ronriName As String
+    
+    Dim butsuriName As String
+    
+    Dim maxCount As Integer
+    
+    maxCount = Worksheets("getter").Cells(1, 1).End(xlDown).Row
+    
+    Dim arrays() As String
+    
+    ReDim arrays(maxCount, maxCount)
+    
+    Dim index As Integer
+    index = 0
+    
+    Dim filaName As String
+    filName = Range("B1").Value & "\getter.txt"
+    
+    '3行目から最後の行まで
+    For i = 3 To maxCount
+        ronriName = "/** " & Worksheets("getter").Cells(i, 1).Value & " */"
+        
+        '一文字目大文字に変換して2文字以降そのままつける。
+        butsuriName = hensuu & ".get" & UCase(Left(Worksheets("getter").Cells(i, 2).Value, 1)) & Mid(Worksheets("getter").Cells(i, 2).Value, 2) & "()"
+        
+        arrays(index, 0) = ronriName
+        arrays(index, 1) = butsuriName
+        
+        index = index + 1
+    Next
+    
+    
+    'ファイルを書き込みで開く(無ければ新規作成される、あれば上書き)
+    Open filName For Output As #1
+    
+    For i = 0 To index
+        '開いたファイルに書き込む
+        Print #1, CStr(arrays(i, 0))
+        Print #1, CStr(arrays(i, 1))
+        Debug.Print (arrays(i, 0))
+        Debug.Print (arrays(i, 1))
+
+    Next
+ 
+    '開いたファイルを閉じる
+    Close #1
+ 
+    '終わったのが分かるようにメッセージを出す
+    MsgBox "完了！"
+End Sub
